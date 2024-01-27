@@ -1,0 +1,58 @@
+<%- include('../head.ejs'); %>
+
+<div class="container">
+  <form method="post" enctype="multipart/form-data">
+    <div class="mb-3">
+      <label for="exerciseName" class="form-label">Nome do exercício</label>
+      <input type="text" class="form-control" id="exerciseName" name="exerciseName" aria-describedby="exerciseName" required>
+    </div>
+    <div class="mb-3">
+      <label for="trainedGroup" class="form-label">Grupo treinado</label>
+      <select class="form-select" id="trainedGroup" name="trainedGroup">
+        <option selected>Selecione um grupo</option>
+        <% for( var i in muscleGroups ) { %>
+          <option value="<%- i %>"><%= muscleGroups[i] %></option>
+        <% } %>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label for="exerciseDescription" class="form-label">Decrição do exercício <span class="text-muted">(opcional)</span></label>
+      <textarea class="form-control" id="exerciseDescription" name="exerciseDescription" rows="3"></textarea>
+    </div>
+    <div class="mb-3">
+      <label for="exampleGIF" class="form-label">GIF de exemplo <span class="text-muted">(opcional)</span></label>
+      <input class="form-control" type="file" id="exampleGIF" accept=".gif">
+      <img id="preview" src="" alt="Preview" style="max-width: 100%; display: none;">
+    </div>
+
+    <div class="mt-5">
+      <button type="submit" class="btn btn-primary">Criar exercício</button>
+      <a href="/exercicios" class="btn btn-light">Cancelar</a>
+    </div>
+  </form>
+</div>
+
+<script>
+  $(document).ready(function() {
+    $('#exampleGIF').change(function() {
+      const files = $('#exampleGIF').prop('files');
+      const preview = $('#preview');
+
+      if (files && files[0]) {
+        const reader = new FileReader();
+
+        reader.onload = function (e) {
+          preview.attr('src', e.target.result);
+          preview.css('display', 'block');
+        };
+
+        reader.readAsDataURL(files[0]);
+      } else {
+        preview.attr('src', '');
+        preview.css('display', 'none');
+      }
+    })
+  })
+</script>
+
+<%- include('../tail.ejs'); %>

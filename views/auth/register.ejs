@@ -1,0 +1,41 @@
+<%- include('../head.ejs'); %>
+
+<style>
+  body {
+    min-height: 100vh;
+    background-image: url('/images/daniel-apodaca-WdoQio6HPVA-unsplash.jpg');
+    background-position: center;
+    background-size: cover;
+}
+</style>
+
+<div class="container">
+  <div class="position-absolute top-50 translate-middle border border-light border-5 rounded" style="left: 25%; min-height: 30rem; width: fit-content;">
+    <main class="h-100 p-5 d-flex flex-column" style="justify-content: space-around; min-width: 35rem;">
+      <h1 class="text-light fs-1 text-decoration-none fw-bolder">Cadastro</h1>
+
+      <form method="post">
+        <div class="mb-3">
+          <label for="iNome" class="form-label text-primary">Nome</label>
+          <input type="text" class="form-control" name="iNome" id="iNome" required>
+        </div>
+        <div class="mb-3">
+          <label for="iEmail" class="form-label text-primary">E-mail</label>
+          <input type="email" class="form-control" name="iEmail" id="iEmail" required>
+        </div>
+        <div class="mb-5">
+          <label for="iPassword0" class="form-label text-primary">Senha</label>
+          <input type="password" class="form-control" name="iPassword0" id="iPassword0" required>
+        </div>
+        <div class="mb-5">
+          <label for="iPassword1" class="form-label text-primary">Confirme sua senha</label>
+          <input type="password" class="form-control" name="iPassword1" id="iPassword1" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Cadastrar-se</button>
+        <a href="/" class="btn btn-outline-primary">Cancelar</a>
+      </form>
+    </main>
+  </div>
+</div>
+
+<%- include('../tail.ejs'); %>

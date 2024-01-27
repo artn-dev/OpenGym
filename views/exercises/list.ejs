@@ -1,0 +1,18 @@
+<%- include('../head.ejs'); %>
+
+<div class="container">
+  <h4 class="fs-3">Exercícios Conhecidos</h4>
+
+  <!-- TODO: Melhorar exibição dos exercícios -->
+  <ul class="list-group mb-5">
+    <% for( let i = 0; i < exercises.length; i++ ) { %>
+      <li class="list-group-item"><%= exercises[i].name %></li>
+    <% } %>
+  </ul>
+
+  <a href="/exercicios/criar-exercicio" class="btn btn-primary">
+    <i class="bi bi-plus-lg me-1"></i>Adicionar novo exercício
+  </a>
+</div>
+
+<%- include('../tail.ejs'); %>

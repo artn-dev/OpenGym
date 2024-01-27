@@ -1,0 +1,25 @@
+<%- include('head.ejs'); %>
+
+<style>
+    body {
+      min-height: 100vh;
+      background-image: url('/images/daniel-apodaca-WdoQio6HPVA-unsplash.jpg');
+      background-position: center;
+      background-size: cover;
+  }
+</style>
+
+<div class="container">
+  <div class="position-absolute top-50 translate-middle border border-light border-5 rounded" style="left: 25%; height: 30rem; width: fit-content;">
+    <main class="h-100 p-5 d-flex flex-column" style="justify-content: space-around;">
+      <h1 class="text-light text-decoration-none fw-bolder" style="font-size: 5rem;">OpenGym</h1>
+
+      <div class="text-light d-flex flex-column">
+        <span class="text-light fs-4 fst-italic mb-3">Desafie seus limites, crie sua própria jornada fitness.</span>
+        <p class="fst-italic"><a href="/auth/login" class="link-primary">Faça login</a> ou <a href="/auth/cadastro" class="link-primary">crie uma conta</a>.</p>
+      </div>
+    </main>
+  </div>
+</div>
+
+<%- include('tail.ejs'); %>
