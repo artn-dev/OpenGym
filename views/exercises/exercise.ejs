@@ -1,0 +1,14 @@
+<li class="list-group-item">
+  <%= exercise.name %>
+
+  <div class="dropdown position-absolute top-0 end-0 me-2">
+    <a role="button">
+      <i class="bi bi-three-dots"></i>
+    </a>
+    <ul class="dropdown-menu">
+      <li><a class="dropdown-item delete-action" href="#" data-id="<%= exercise.id %>">Excluir</a></li>
+      <li><a class="dropdown-item" href="#">Outra ação</a></li>
+      <li><a class="dropdown-item" href="#">Outra ação</a></li>
+    </ul>
+  </div>
+</li>

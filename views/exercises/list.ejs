@@ -6,7 +6,7 @@
   <!-- TODO: Melhorar exibição dos exercícios -->
   <ul class="list-group mb-5">
     <% for( let i = 0; i < exercises.length; i++ ) { %>
-      <li class="list-group-item"><%= exercises[i].name %></li>
+      <%- include('exercise.ejs', { exercise: exercises[i] }); %>
     <% } %>
   </ul>
 
@@ -14,5 +14,31 @@
     <i class="bi bi-plus-lg me-1"></i>Adicionar novo exercício
   </a>
 </div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $(document).on('click', '.dropdown a', function() {
+      const menu = $(this).siblings('ul.dropdown-menu')
+
+      menu.slideToggle()
+      $('ul.dropdown-menu').not(menu).slideUp();
+    })
+
+    $(document).on('click', '.delete-action', function() {
+      const id = $(this).data('id');
+
+      $.ajax({
+        type: 'delete',
+        url: `/exercicios/excluir-exercicio/${id}`,
+        success: function(response) {
+          window.location.href = response.next_page;
+        },
+        error: function(error) {
+          console.error('Erro na requisição', error);
+        }
+      })
+    })
+  })
+</script>
 
 <%- include('../tail.ejs'); %>
