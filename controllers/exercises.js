@@ -16,10 +16,11 @@ const exerciseListView = (req, res) => {
 
 const registerExercise = (req, res) => {
     if (req.method === 'POST') {
+        const { exerciseName, trainedGroup, exerciseDescription } = req.body;
+        const exampleGifData = req.file;
+
         // TODO: Validar formulário
         // TODO: Registrar exercício na base de dados
-        console.log(req.body)
-        console.log(req.file);
 
         res.redirect('/exercicios');
         return;
