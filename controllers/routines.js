@@ -1,10 +1,13 @@
 const routineListView = (req, res) => {
     //TODO: Coletar rotinas para exibição pelo modelo
     const routines = [
-        { name: 'Agachamento', sets: 7,  reps: 13 },
-        { name: 'Exerc 1', sets: 7,  reps: 13 },
-        { name: 'Exerc 2', sets: 7,  reps: 13 },
-        { name: 'Exerc 3', sets: 7,  reps: 13 },
+        { name: 'Rotina 1', sets: 7,  reps: 13, id: 1 },
+        { name: 'Rotina 2', sets: 7,  reps: 13, id: 2 },
+        { name: 'Rotina 3', sets: 7,  reps: 13, id: 3 },
+        { name: 'Rotina 4', sets: 7,  reps: 13, id: 4 },
+        { name: 'Rotina 5', sets: 7,  reps: 13, id: 5 },
+        { name: 'Rotina 6', sets: 7,  reps: 13, id: 6 },
+        { name: 'Rotina 7', sets: 7,  reps: 13, id: 7 },
     ];
 
     res.render('routines/list', {
@@ -40,7 +43,17 @@ const registerRoutine = (req, res) => {
 }
 
 
+const  deleteRoutine = (req, res) => {
+    const routineId = req.params.id;
+
+    // TODO: Excluir rotina da base de dados
+
+    res.send({ next_page: '/rotinas' });
+}
+
+
 module.exports = {
     routineListView,
-    registerRoutine
+    registerRoutine,
+    deleteRoutine
 }
