@@ -1,0 +1,24 @@
+<article class="card position-relative">
+  <div class="card-body">
+    <h4 class="card-title"><%= rotina.nome %></h4>
+
+    <ul class="list-group list-group-flush">
+      <% for( let i = 0; i < exercicios.length; i++ ) { %>
+        <li class="list-group-item"><%= exercicios[i].nome %></li>
+      <% } %>
+    </ul>
+
+    <a href="#" class="card-link">Ver rotina</a>
+  </div>
+
+  <div class="dropdown position-absolute top-0 end-0 m-2">
+    <a role="button">
+      <i class="bi bi-three-dots-vertical"></i>
+    </a>
+    <ul class="dropdown-menu">
+      <li><a class="dropdown-item delete-action" href="#" data-id="<%= rotina.id %>">Excluir</a></li>
+      <li><a class="dropdown-item" href="#">Outra ação</a></li>
+      <li><a class="dropdown-item" href="#">Outra ação</a></li>
+    </ul>
+  </div>
+</article>

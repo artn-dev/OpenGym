@@ -1,0 +1,103 @@
+<%- include('../head.ejs'); %>
+
+<div class="container">
+  <form method="post">
+    <div class="mb-3">
+      <label for="rotinaNome" class="form-label">Nome da rotina</label>
+      <input type="text" class="form-control" id="rotinaNome" name="rotinaNome" aria-describedby="rotinaNome" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="exerciciosOpcoes" class="form-label">Exercícios conhecidos</label>
+      <div class="row">
+        <div class="col">
+          <select class="form-select" id="exerciciosOpcoes">
+            <option selected>Selecione um exercício</option>
+            <% for( var i in exercicios ) { %>
+              <option value="<%- exercicios[i].id %>"><%= exercicios[i].nome %></option>
+            <% } %>
+          </select>
+        </div>
+        <div class="col-3">
+          <button id="add-exercise" type="button" class="btn btn-sm btn-primary">
+            Adicionar à rotina
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="form-footer" class="mt-5">
+      <button type="submit" class="btn btn-primary">Criar rotina</button>
+      <a href="/rotinas" class="btn btn-light">Cancelar</a>
+    </div>
+  </form>
+</div>
+
+<script>
+  $(document).ready(function() {
+    $('#add-exercise').click(function() {
+      let exercicioSelecionado = $('#exerciciosOpcoes option:selected[value]');
+
+      if (exercicioSelecionado.length === 0)
+        return;
+
+      let exercicioId = exercicioSelecionado.val();
+      let exercicioName = exercicioSelecionado.text();
+
+      $('#form-footer').before(`
+        <div class="card exercise-data" data-id="${exercicioId}">
+          <div class="card-body row">
+            <div class="col form-floating">
+              <input type="text" class="form-control" id="exe" value="${exercicioName}" readonly>
+              <label for="exe" class="form-label">Nome do exercício</label>
+            </div>
+            <div class="col-3 form-floating">
+              <input type="number" class="form-control" id="exe-series" required>
+              <label for="exe-series" class="form-label">Número de séries</label>
+            </div>
+            <div class="col-1 d-flex align-items-center remove-exercise">
+              <a role="button" class="btn btn-danger text-white">
+                <i class="bi bi-trash-fill"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      `)
+    })
+
+    $(document).on('click', '.remove-exercise', function() {
+      $(this).parents('.exercise-data').remove();
+    })
+
+    $('form').submit(function(e) {
+      e.preventDefault();
+
+      let data = {
+        rotinaNome: $('#rotinaNome').val(),
+        exercicios: [],
+      };
+
+      $('.exercise-data').each(function(index) {
+        let id = $(this).data('id');
+        let series = $(this).find('input#exe-series').val();
+
+        data.exercicios.push({ id: id, series: series });
+      })
+
+      $.ajax({
+        type: 'post',
+        url: '/rotinas/criar-rotina',
+        data: JSON.stringify(data),
+        contentType: 'application/json',
+        success: function(response) {
+          window.location.href = '/rotinas';
+        },
+        error: function(error) {
+          console.error('Erro na requisição', error);
+        }
+      })
+    })
+  })
+</script>
+
+<%- include('../tail.ejs'); %>
