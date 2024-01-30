@@ -25,6 +25,10 @@ class CadastroRotina {
         return await knex.select().from('rotinas');
     }
 
+    async excluir(id) {
+        return await knex('rotinas').where('id', id).del();
+    }
+
     async getExerciciosPorRotina(rotinaId) {
         return await knex.select('exercicio_id  as id', 'exercicios.nome', 'series', 'repeticoes')
                         .from('rotinas_exercicios')

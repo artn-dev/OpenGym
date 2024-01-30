@@ -19,9 +19,7 @@ class TelaRotinas {
 
     async deletarRotina(req, res) {
         const rotinaId = req.params.id;
-    
-        // TODO: Excluir rotina da base de dados
-    
+        facade.excluirRotina(rotinaId);
         res.send({ next_page: '/rotinas' });
     }
 }

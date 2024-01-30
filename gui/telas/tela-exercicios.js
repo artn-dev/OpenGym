@@ -12,9 +12,7 @@ class TelaExercicios {
 
     async deletarExercicio(req, res) {
         const exercicioId = req.params.id;
-    
-        // TODO: Excluir rotina da base de dados
-    
+        facade.excluirExercicio(exercicioId);
         res.send({ next_page: '/exercicios' });
     }
 }

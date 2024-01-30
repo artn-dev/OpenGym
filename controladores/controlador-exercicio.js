@@ -13,6 +13,10 @@ class ControladorExercicio {
     async getExercicios() {
         return this.modelo.getExercicios();
     }
+
+    async excluir(id) {
+        return this.modelo.excluir(id);
+    }
 }
 
 module.exports = ControladorExercicio;

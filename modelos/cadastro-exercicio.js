@@ -16,6 +16,10 @@ class CadastroExercicio {
     async getExercicios() {
         return await knex.select().from('exercicios');
     }
+
+    async excluir(id) {
+        return await knex('exercicios').where('id', id).del();
+    }
 }
 
 

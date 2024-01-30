@@ -16,6 +16,10 @@ class Facade {
         return this.ctrlExercicios.getExercicios();
     }
 
+    async excluirExercicio(id) {
+        return this.ctrlExercicios.excluir(id);
+    }
+
     async cadastrarRotina(nome, exercicios) {
         return this.ctrlRotinas.cadastrarRotina(nome, exercicios);
     }
@@ -26,6 +30,10 @@ class Facade {
 
     async getExerciciosPorRotina(rotinaId) {
         return this.ctrlRotinas.getExerciciosPorRotina(rotinaId);
+    }
+
+    async excluirRotina(id) {
+        return this.ctrlRotinas.excluir(id);
     }
 }
 

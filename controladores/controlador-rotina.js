@@ -17,6 +17,10 @@ class ControladorRotina {
     async getExerciciosPorRotina(rotinaId) {
         return this.modelo.getExerciciosPorRotina(rotinaId);
     }
+
+    async excluir(id) {
+        return this.modelo.excluir(id);
+    }
 }
 
 module.exports = ControladorRotina;
