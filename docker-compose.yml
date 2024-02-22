@@ -1,0 +1,6 @@
+version: '3'
+services:
+  exercicios:
+    build: ./exercicios
+    ports:
+      - 3000:3000

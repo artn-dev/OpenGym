@@ -1,10 +1,9 @@
-import { Injectable } from '@nestjs/common';
-import * as CircuitBreaker from 'opossum';
+const CircuitBreaker = require('opossum');
+const { CadastroExercicio } =  require('./cadastro');
 
-@Injectable()
 class CadastrarExercicioCircuitBreaker {
-    constructor(cadastroExercicio) {
-        this.circuitBreaker = new CircuitBreaker(this.cadastroExercicio.cadastrarExercicio, {
+    constructor() {
+        this.circuitBreaker = new CircuitBreaker(CadastroExercicio.cadastrarExercicio, {
             timeout: 3000,
             errorThresholdPercentage: 50,
             resetTimeout: 20000,
@@ -20,12 +19,11 @@ class CadastrarExercicioCircuitBreaker {
     }
 }
 
-@Injectable()
 class GetExercicioCircuitBreaker {
     circuitBreaker;
 
-    constructor(cadastroExercicio) {
-        this.circuitBreaker = new CircuitBreaker(this.cadastroExercicio.getExercicios, {
+    constructor() {
+        this.circuitBreaker = new CircuitBreaker(CadastroExercicio.getExercicios, {
             timeout: 3000,
             errorThresholdPercentage: 50,
             resetTimeout: 20000,
@@ -41,12 +39,11 @@ class GetExercicioCircuitBreaker {
     }
 }
 
-@Injectable()
 class ExcluirExercicioCircuitBreaker {
     circuitBreaker;
 
-    constructor(cadastroExercicio) {
-        this.circuitBreaker = new CircuitBreaker(this.cadastroExercicio.excluir, {
+    constructor() {
+        this.circuitBreaker = new CircuitBreaker(CadastroExercicio.excluir, {
             timeout: 3000,
             errorThresholdPercentage: 50,
             resetTimeout: 20000,

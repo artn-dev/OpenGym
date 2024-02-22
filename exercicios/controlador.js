@@ -1,4 +1,4 @@
-const { CadastrarExercicioCircuitBreaker, GetExercicioCircuitBreaker, ExcluirExercicioCircuitBreaker } =  require('circuit-breaker');
+const { CadastrarExercicioCircuitBreaker, GetExercicioCircuitBreaker, ExcluirExercicioCircuitBreaker } =  require('./circuit-breaker');
 
 
 class ControladorExercicio {
