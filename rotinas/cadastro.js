@@ -11,7 +11,6 @@ class CadastroRotina {
         for (let i = 0; i < exerciciosInfo.length; i++) {
             const { id, series } = exerciciosInfo[i];
             const repeticoes = 0;
-            console.log(id, series)
 
             await knex.insert({
                 rotina_id: rotinaId,
@@ -38,7 +37,7 @@ class CadastroRotina {
                 rotina.exercicios = [];
 
             } else {
-                const res = await axios.get('http://exercicios:4000/exercicios/batch/', {
+                const res = await axios.get('http://exercicios:4000/batch/', {
                     params: {
                         exercicios: exerciciosIds
                     }

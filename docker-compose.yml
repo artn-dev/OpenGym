@@ -5,7 +5,6 @@ services:
     image: exercicios
     container_name: exercicios
     command: ./init_server.sh
-    # command: sh
     restart: on-failure
     ports:
       - "4000:4000"
@@ -35,7 +34,6 @@ services:
     image: rotinas
     container_name: rotinas
     command: ./init_server.sh
-    # command: sh
     restart: on-failure
     ports:
       - "4001:4001"
@@ -60,6 +58,20 @@ services:
       interval: 5s
       retries: 5
     restart: always
+
+  opengym:
+    build: opengym/
+    image: opengym
+    container_name: opengym
+    command: ./init_server.sh
+    restart: on-failure
+    ports:
+      - "4002:4002"
+    volumes:
+      - ./opengym:/app/opengym
+    depends_on:
+      - exercicios
+      - rotinas
 
 volumes:
   exercicios-db:

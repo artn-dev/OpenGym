@@ -1,11 +1,10 @@
 FROM node:21-alpine
 
-WORKDIR /app/rotinas
+WORKDIR /app/opengym
 COPY package*.json ./
 RUN npm install
 
 COPY . .
-RUN npm install -g knex
 
-EXPOSE 4001
+EXPOSE 4002
 CMD ["sh"]

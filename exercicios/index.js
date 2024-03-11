@@ -23,10 +23,10 @@ const upload = multer({ storage: storage });
 const ControladorExercicio = require('./controlador');
 const controlador = new ControladorExercicio();
 
-app.get('/exercicios/listar', controlador.listarExercicios);
-app.delete('/exercicios/excluir/:id', controlador.deletarExercicio);
-app.get('/exercicios/batch/', controlador.getInfoBatch);
-app.post('/exercicios/criar', upload.single('files'), controlador.cadastrarExercicio);
+app.get('/listar', controlador.listarExercicios);
+app.delete('/excluir/:id', controlador.deletarExercicio);
+app.get('/batch/', controlador.getInfoBatch);
+app.post('/criar', upload.single('files'), controlador.cadastrarExercicio);
 
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, console.log(`Server started in port ${PORT}`));

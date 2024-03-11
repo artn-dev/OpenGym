@@ -7,5 +7,5 @@ RUN npm install
 COPY . .
 RUN npm install -g knex
 
-EXPOSE 3000
+EXPOSE 4000
 CMD ["sh"]

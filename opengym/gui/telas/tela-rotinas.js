@@ -4,11 +4,6 @@ class TelaRotinas {
     async listarRotinas(req, res) {
         const rotinas = await facade.getRotinas();
         let exercicios = {}
-
-        for (let i = 0; i < rotinas.length; i++) {
-            let rotina = rotinas[i];
-            exercicios[rotina.id] = await facade.getExerciciosPorRotina(rotina.id);
-        }
     
         res.render('rotinas/lista', {
             title: 'OpenGym | Minhas rotinas',

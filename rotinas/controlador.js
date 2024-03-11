@@ -23,6 +23,7 @@ class ControladorRotina {
     async deletarRotina(req, res) {
         const rotinaId = req.params.id;
 
+        console.log('Excluir rotina id ', rotinaId)
         const excluir = new ExcluirRotinaCircuitBreaker();
         await excluir.excluirRotina(rotinaId);
 

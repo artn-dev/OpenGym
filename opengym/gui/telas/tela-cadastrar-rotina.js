@@ -5,7 +5,6 @@ class TelaCadastrarRotina {
         if (req.method === 'POST') {
             const { rotinaNome, exercicios } = req.body;
 
-            // TODO: Validar formulário
             await facade.cadastrarRotina(rotinaNome, exercicios);
     
             res.send({ next_page: '/rotinas' });

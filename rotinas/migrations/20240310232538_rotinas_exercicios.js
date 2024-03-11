@@ -7,7 +7,7 @@ exports.up = function(knex) {
       .createTable('rotinas_exercicios', function(table) {
         table.integer('rotina_id').unsigned();
         table.integer('exercicio_id').unsigned();
-        table.foreign('rotina_id').references('rotinas.id');
+        table.foreign('rotina_id').references('rotinas.id').onDelete('CASCADE');
         table.integer('series').unsigned();
         table.integer('repeticoes').unsigned();
       });

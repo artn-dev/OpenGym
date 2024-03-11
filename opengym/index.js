@@ -16,5 +16,5 @@ app.use('/', require('./gui/rotas/login'));
 app.use('/exercicios', require('./gui/rotas/exercicios'));
 app.use('/rotinas', require('./gui/rotas/rotinas'));
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 4002;
 app.listen(PORT, console.log(`Server started in port ${PORT}`));
