@@ -1,11 +1,11 @@
 FROM node:21-alpine
 
-WORKDIR /app/exercicios
+WORKDIR /app/rotinas
 COPY package*.json ./
 RUN npm install
 
 COPY . .
 RUN npm install -g knex
 
-EXPOSE 3000
+EXPOSE 3001
 CMD ["sh"]

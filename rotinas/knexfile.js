@@ -8,11 +8,11 @@ module.exports = {
   development: {
     client: 'postgresql',
     connection: {
-      host: 'exercicios-db',
+      host: 'rotinas-db',
       database: 'postgres',
       user:     'postgres',
       password: 'postgres',
-      port: 5433,
+      port: 5434,
     },
     pool: {
       min: 2,
@@ -26,11 +26,11 @@ module.exports = {
   staging: {
     client: 'postgresql',
     connection: {
-      host: 'exercicios-db',
+      host: 'rotinas-db',
       database: 'postgres',
       user:     'postgres',
       password: 'postgres',
-      port: 5433,
+      port: 5434,
     },
     pool: {
       min: 2,

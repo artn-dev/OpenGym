@@ -1,10 +1,10 @@
 const CircuitBreaker = require('opossum');
-const CadastroExercicio =  require('./cadastro');
+const CadastroRotina =  require('./cadastro');
 
-class CadastrarExercicioCircuitBreaker {
+class CadastrarRotinaCircuitBreaker {
     constructor() {
         this.circuitBreaker = new CircuitBreaker(
-            CadastroExercicio.cadastrarExercicio, {
+            CadastroRotina.cadastrarRotina, {
                 timeout: 3000,
                 errorThresholdPercentage: 50,
                 resetTimeout: 20000,
@@ -12,9 +12,9 @@ class CadastrarExercicioCircuitBreaker {
         );
     }
 
-    async cadastrarExercicio(name, group, description, gifPath) {
+    async cadastrarRotina(nome, exerciciosInfo) {
         try {
-            return await this.circuitBreaker.fire(name, group, description, gifPath);
+            return await this.circuitBreaker.fire(nome, exerciciosInfo);
         } catch (error) {
             console.log(error)
             return { status: 'Unavailable due to service issues' };
@@ -22,12 +22,12 @@ class CadastrarExercicioCircuitBreaker {
     }
 }
 
-class GetExercicioCircuitBreaker {
+class GetRotinaCircuitBreaker {
     circuitBreaker;
 
     constructor() {
         this.circuitBreaker = new CircuitBreaker(
-            CadastroExercicio.getExercicios, {
+            CadastroRotina.getRotinas, {
                 timeout: 3000,
                 errorThresholdPercentage: 50,
                 resetTimeout: 20000,
@@ -35,7 +35,7 @@ class GetExercicioCircuitBreaker {
         );
     }
 
-    async getExercicios() {
+    async getRotinas() {
         try {
             return await this.circuitBreaker.fire();
         } catch (error) {
@@ -45,12 +45,12 @@ class GetExercicioCircuitBreaker {
     }
 }
 
-class ExcluirExercicioCircuitBreaker {
+class ExcluirRotinaCircuitBreaker {
     circuitBreaker;
 
     constructor() {
         this.circuitBreaker = new CircuitBreaker(
-            CadastroExercicio.excluir, {
+            CadastroRotina.excluir, {
                 timeout: 3000,
                 errorThresholdPercentage: 50,
                 resetTimeout: 20000,
@@ -58,7 +58,7 @@ class ExcluirExercicioCircuitBreaker {
         );
     }
 
-    async excluirExercicio(id) {
+    async excluirRotina(id) {
         try {
             return await this.circuitBreaker.fire(id);
         } catch (error) {
@@ -68,12 +68,12 @@ class ExcluirExercicioCircuitBreaker {
     }
 }
 
-class GetExercicioInfoBatchCircuitBreaker {
+class GetExerciciosPorRotinaCircuitBreaker {
     circuitBreaker;
 
     constructor() {
         this.circuitBreaker = new CircuitBreaker(
-            CadastroExercicio.getInfoBatch, {
+            CadastroRotina.getExerciciosPorRotina, {
                 timeout: 3000,
                 errorThresholdPercentage: 50,
                 resetTimeout: 20000,
@@ -81,9 +81,9 @@ class GetExercicioInfoBatchCircuitBreaker {
         );
     }
 
-    async getInfoBatch(ids) {
+    async getExerciciosPorRotina(rotinaId) {
         try {
-            return await this.circuitBreaker.fire(ids);
+            return await this.circuitBreaker.fire(rotinaId);
         } catch (error) {
             console.log(error)
             return { status: 'Unavailable due to service issues' };
@@ -92,8 +92,8 @@ class GetExercicioInfoBatchCircuitBreaker {
 }
 
 module.exports = {
-    CadastrarExercicioCircuitBreaker,
-    GetExercicioCircuitBreaker,
-    ExcluirExercicioCircuitBreaker,
-    GetExercicioInfoBatchCircuitBreaker,
+    CadastrarRotinaCircuitBreaker,
+    GetRotinaCircuitBreaker,
+    ExcluirRotinaCircuitBreaker,
+    GetExerciciosPorRotinaCircuitBreaker,
 }

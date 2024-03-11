@@ -1,4 +1,4 @@
-const facade = require('../../controladores/facade');
+const facade = require('../../../controladores/facade');
 
 class TelaLogin {
     async index(req, res) {

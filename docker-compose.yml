@@ -1,6 +1,68 @@
 version: '3'
 services:
   exercicios:
-    build: ./exercicios
+    build: exercicios/
+    image: exercicios
+    container_name: exercicios
+    command: ./init_server.sh
+    # command: sh
+    restart: on-failure
     ports:
-      - 3000:3000
+      - "4000:4000"
+    volumes:
+      - ./exercicios:/app/exercicios
+    depends_on:
+      - exercicios-db
+
+  exercicios-db:
+    image: postgres:latest
+    container_name: exercicios-db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+      PGPORT: 5433
+    volumes:
+      - exercicios-db:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD', 'pg_isready', '-U', postgres]
+      interval: 5s
+      retries: 5
+    restart: always
+
+  rotinas:
+    build: rotinas/
+    image: rotinas
+    container_name: rotinas
+    command: ./init_server.sh
+    # command: sh
+    restart: on-failure
+    ports:
+      - "4001:4001"
+    volumes:
+      - ./rotinas:/app/rotinas
+    depends_on:
+      - rotinas-db
+      - exercicios
+
+  rotinas-db:
+    image: postgres:latest
+    container_name: rotinas-db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+      PGPORT: 5434
+    volumes:
+      - rotinas-db:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD', 'pg_isready', '-U', postgres]
+      interval: 5s
+      retries: 5
+    restart: always
+
+volumes:
+  exercicios-db:
+    driver: local
+  rotinas-db:
+    driver: local
